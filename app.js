@@ -5,7 +5,7 @@ const triviaQuestions = [
         id: 1,
         question: 'Which player is over 7 feet tall and won championships with both the Los Angeles lakers and Miami Heat?',
         answer: 'Shaquille O\'Neal',
-        wrongAnswers: ['Yao Ming', 'Kareem Abdul-Jabbar', 'Tyson Chandler']
+        wrongAnswers: ['Yao Ming', 'Kareem Abdul-Jabbar', 'Tyson Chandler'],
     },
 
     {
@@ -213,148 +213,188 @@ const triviaQuestions = [
 
     {
         id: 30,
-        question: ''
-        answer:
-        wrongAnswers:
-    }
+        question: 'The Miami Heat\'s neon blue and pink jerseys are called what?',
+        answer: 'Vice Nights',
+        wrongAnswers: ['Neon Nights', 'Cyber Nights', 'Electric Neon']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 31,
+        question: 'The classic Detroit Pistons jersey featured what icon?',
+        answer: 'Horse head with flames',
+        wrongAnswers: ['Car engine on fire', 'A spaceship blasting off', 'A cheetah with a trail of flames']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 32,
+        question: 'What was Hakeem Olajuwon\'s nickname?',
+        answer: 'The Dream',
+        wrongAnswers: ['The Cream', 'Extreme', 'Supreme']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 33,
+        question: 'Which player is featured on the NBA logo?',
+        answer: 'Jerry West',
+        wrongAnswers: ['Pistol Pete', 'Larry Bird', 'Magic Johnson']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 34,
+        question: 'Which college did Michael Jordan attend?',
+        answer: 'UNC',
+        wrongAnswers: ['UCLA', 'University of Illinois', 'Notre Dame']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 35,
+        question: 'Were Michael Jordan\'s kids in the film "Space Jam" portrayed by his real kids?',
+        answer: 'No',
+        wrongAnswers: ['Yes']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 36,
+        question: 'In December of 2016, which player scored 60 points while holding the ball for only 90 seconds and dribbling only 11 times?',
+        answer: 'Klay Thompson',
+        wrongAnswers: ['Devin Booker', 'James Harden', 'Steph Curry']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 37,
+        question: 'Which player once scored 100 points in a game?',
+        answer: 'Wilt Chamberlain',
+        wrongAnswers: ['Kareem Abdul-Jabbar', 'Kobe Bryant', 'Vince Carter']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 38,
+        question: 'What percentage of high school basketball players make it to the NBA?',
+        answer: '0.03%',
+        wrongAnswers: ['0.02%', '0.06%', '0.01%']
+    },
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
-
-
-    {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 39,
+        question: 'Which former NBA player became a huge star while playing basketball in China?',
+        answer: 'Stephon Marbury',
+        wrongAnswers: ['Lance Stephenson', 'Tracy McGrady', 'Steve Francis']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
-
-    {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
-
-    {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
-
-    {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 40, 
+        question: 'What is the San Antonio Spurs mascot?',
+        answer: 'A Coyote',
+         wrongAnswers: ['A Cowboy', 'A Horse', 'A Cowboy Boot']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 41, 
+        question: 'Which of these players have not torn their ACL?',
+        answer: 'Stephen Curry',
+        wrongAnswers: ['Kristaps Porzingis', 'Zach Lavine', 'DeMarcus Cousins']
+    },
+
+    {
+        id: 42,
+        question: 'What is the nickname for the duo of Stephen Curry and Klay Thompson?',
+        answer: 'Splash Brothers',
+        wrongAnswers: ['Smash Brothers', 'Bash Brothers', 'Bounce Brothers']
+    },
+
+    {
+        id: 43,
+        question: '76ers center, Joel Embiid, is a native of which African country?',
+        answer: 'Cameroon',
+        wrongAnswers: ['Nigeria', 'Kenya', 'Sudan']
+    },
+
+    {
+        id: 44,
+        question: 'Who invented the game of basketball?',
+        answer: 'James Naismith',
+        wrongAnswers: ['Alexander Fleming', 'Alfred Blalock', 'Benjamin Spock']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 45,
+        question: 'Which NBA player hit a clutch 3-pointer to send Game 6 of the 2013 Finals into overtime?',
+        answer: 'Ray Allen',
+        wrongAnswers: ['Manu Ginobli', 'Shane Battier', 'Kevin Durant']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
-    }
+        id: 46,
+        question: 'Which NBA player was infamously selected right before Michael Jordan in the Draft?',
+        answer: 'Sam Bowie',
+        wrongAnswers: ['Mark Eaton', 'Phil Jackson', 'Steve Kerr']
+    },
 
 
     {
-        id: 
-        question:
-        answer:
-        wrongAnswers:
+        id: 47,
+        question: 'Which NBA player had the nickname of "Ice Man"?',
+        answer: 'George Gervin',
+        wrongAnswers: ['Julius Erving', 'Earl Monroe', 'Moses Malone']
+    },
+
+
+    {
+        id: 48,
+        question: 'What team has LeBron James not played on?',
+        answer: 'Boston Celtics',
+        wrongAnswers: ['Cleveland Cavaliers', 'Los Angeles Lakers', 'Miami Heat']
+    },
+
+    {
+        id: 49,
+        question: 'In what year did the Seattle Supersonics move to Oklahoma City and become the Thunder?',
+        answer: '2008',
+        wrongAnswers: ['2006', '2007', '2009']
+    },
+
+    {
+        id: 50,
+        question: 'Which team drafted Dennis Rodman?',
+        answer: 'Detroit Pistons',
+        wrongAnswers: ['Chicago Bulls', 'Los Angeles Lakers', 'San Antonio Spurs']
+    },
+
+    {
+        id: 51, 
+        question: 'Which of these NBA players does not have their own signature shoe?',
+        answer: 'Luka Doncic',
+        wrongAnswers: ['Klay Thompson', 'Joel Embiid', 'Donovan Mitchell']
+    },
+
+    {
+        id: 52,
+        question: 'How many MVPs has LeBron James won?',
+        answer: '4',
+        wrongAnswers: ['3', '5', '2']
     }
 ]
+
+
+
+
+$(()=> {
+    
+
+
+
+
+
+})
