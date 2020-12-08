@@ -58,7 +58,6 @@ header {
 
 #two-player {
     margin-top: 200px;
-
     width: 350px;
     height: 125px;
     background-color: #FFFFFF;
@@ -66,18 +65,27 @@ header {
     transform: translate(-16%)
 }
 
+#two-player:hover {
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
 #instructions h1 {
     color: #C9082A;
     font-size: 30px;
     padding-top: 45px;
     padding-left: 65px;
+    
+}
+
+#instructions:hover {
+    background-color: rgba(0, 0, 0, 0.07);
 }
 
 #two-player h1 {
     color: #C9082A;
     font-size: 30px;
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: 8px;
+    padding-left: 8px;
 }
 
 #modal {
@@ -124,4 +132,9 @@ header {
 
 #modal-box h1 {
     font-size: 30px;
+}
+
+.multiple-choice {
+    background-color: #FFFFFF;
+
 }

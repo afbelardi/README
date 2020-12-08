@@ -423,6 +423,10 @@ const instructions = () => {
   const startGame = () => {
     $twoPlayer.remove();
     $openModal.remove();
+    $('<div>').addClass('multiple-choice').appendTo('#wrapper');
+    $('<div>').addClass('multiple-choice').appendTo('#wrapper');
+    $('<div>').addClass('multiple-choice').appendTo('#wrapper');
+    $('<div>').addClass('multiple-choice').appendTo('#wrapper');
       
   }
 
