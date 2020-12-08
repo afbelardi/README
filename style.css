@@ -76,8 +76,8 @@ header {
 #two-player h1 {
     color: #C9082A;
     font-size: 30px;
-    padding-top: 50px;
-    padding-left: 80px;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 #modal {
@@ -95,29 +95,29 @@ header {
 
 #modal-box {
 	background-color: #c9082bdb;
-	height: 350px;
-	width: 550px;
+	height: 300px;
+	width: 600px;
 	border-radius: 20px;
 	margin: 150px auto;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
 	margin: 15px; 
-	padding: 12px;
+	padding: 8px;
 }
 
 #close {
     color: #17408B;
     font-size: 25px;
-    margin-left: 450px;
+    margin-left: 500px;
 }
 
 #modal h1 {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 #modal-box p {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 20px;
 }
 

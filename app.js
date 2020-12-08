@@ -1,5 +1,7 @@
 console.log($);
 
+
+// LIST OF TRIVIA QUESTIONS
 const triviaQuestions = [
     {
         id: 1,
@@ -398,8 +400,10 @@ const $modalText = $('#modal-box');
 const $openModal = $('#instructions');
 const $closeModal = $('#close');
 const $audio = $('audio');
+const $twoPlayer = $('#two-player');
 
 
+// FUNCTIONS TO OPEN THE MODAL
 const instructions = () => {
     $modal.css('display', 'flex');
     $audio.play();
@@ -410,12 +414,34 @@ const instructions = () => {
   }
 
 
+ 
+
+  // OPENING THE MODAL ACTION
+  $openModal.on('click', instructions);
+  $closeModal.on('click', closeModal);
+
+  const startGame = () => {
+    $twoPlayer.remove();
+    $openModal.remove();
+      
+  }
+
+  $twoPlayer.on('click', startGame);
+
+  // CREATING PLAYER CLASS
+  class Player {
+      constructor (name, points){
+          name = this.name;
+          points = 0;
+      }
+  }
 
 
+  // CREATING TWO INSTANCES OF THE PLAYER
+const playerOne = new Player ('Player 1');
+const playerTwo = new Player ('Player 2')
 
 
-$openModal.on('click', instructions);
-$closeModal.on('click', closeModal);
 
 
 })
