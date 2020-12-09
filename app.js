@@ -421,8 +421,17 @@ const instructions = () => {
   $closeModal.on('click', closeModal);
 
   const pullQuestion = () => {
-    const triviaQuestion = triviaQuestions[0].question;
-    $('<h2>').addClass('question').text(`${triviaQuestion}`).insertBefore('#choice1');
+    let randomIndex = triviaQuestions[Math.floor(Math.random() * triviaQuestions.length)];
+    let randomQuestion = randomIndex.question;
+    $('<h2>').addClass('question').text(`${randomQuestion}`).insertBefore('#choice1');
+    const $answerQuestion1 = randomIndex.answers[0];
+    const $answerQuestion2= randomIndex.answers[1];
+    const $answerQuestion3 = randomIndex.answers[2];
+    const $answerQuestion4 = randomIndex.answers[3]
+    $('<h3>').addClass('answers').text(`${$answerQuestion1}`).appendTo('#choice1');
+    $('<h3>').addClass('answers').text(`${$answerQuestion2}`).appendTo('#choice2');
+    $('<h3>').addClass('answers').text(`${$answerQuestion3}`).appendTo('#choice3');
+    $('<h3>').addClass('answers').text(`${$answerQuestion4}`).appendTo('#choice4');   
     }
     
 
@@ -436,6 +445,7 @@ const instructions = () => {
     $('<button>').addClass('choices').attr('id', 'choice3').insertBefore('#modal');
     $('<button>').addClass('choices').attr('id', 'choice4').insertBefore('#modal');
     pullQuestion(); 
+
     alert('East is up first!');
   }
 
