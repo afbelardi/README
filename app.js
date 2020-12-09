@@ -71,7 +71,7 @@ const triviaQuestions = [
     {
         id: 10, 
         question: 'Who is the only player to win MVP as a rookie?',
-        arightAnswer: 'Magic Johnson',
+        rightAnswer: 'Magic Johnson',
         answers: ['Derrick Rose', 'Bill Russell', 'Magic Johnson', 'David Robinson']
     },
 
@@ -393,8 +393,8 @@ const triviaQuestions = [
 
 
 $(()=> {
-// cached dom nodes
 
+// cached dom nodes
 const $modal = $('#modal');
 const $modalText = $('#modal-box');
 const $openModal = $('#instructions');
@@ -406,7 +406,7 @@ const $twoPlayer = $('#two-player');
 // FUNCTIONS TO OPEN THE MODAL
 const instructions = () => {
     $modal.css('display', 'flex');
-    $audio.play();
+
   }
 
   const closeModal = () => {
@@ -414,19 +414,29 @@ const instructions = () => {
   }
 
 
- 
+
 
   // OPENING THE MODAL ACTION
   $openModal.on('click', instructions);
   $closeModal.on('click', closeModal);
 
+  const pullQuestion = () => {
+    // let arrQuestions = [];
+    for (i = 0; i < triviaQuestions.length; i++){
+        console.log('Test');
+    }
+    pullQuestion();
+  }
+
+
+  
   const startGame = () => {
     $twoPlayer.remove();
     $openModal.remove();
-    $('<div>').addClass('multiple-choice').appendTo('#wrapper');
-    $('<div>').addClass('multiple-choice').appendTo('#wrapper');
-    $('<div>').addClass('multiple-choice').appendTo('#wrapper');
-    $('<div>').addClass('multiple-choice').appendTo('#wrapper');
+    $('<button>').addClass('choices').attr('id', 'choice1').insertBefore('#modal');
+    $('<button>').addClass('choices').attr('id', 'choice2').insertBefore('#modal');
+    $('<button>').addClass('choices').attr('id', 'choice3').insertBefore('#modal');
+    $('<button>').addClass('choices').attr('id', 'choice4').insertBefore('#modal');
       
   }
 
@@ -434,16 +444,17 @@ const instructions = () => {
 
   // CREATING PLAYER CLASS
   class Player {
-      constructor (name, points){
+      constructor (name, points, isActive){
           name = this.name;
-          points = 0;
+          points = this.points;
+          isActive = this.isActive;
       }
   }
 
 
   // CREATING TWO INSTANCES OF THE PLAYER
-const playerOne = new Player ('Player 1');
-const playerTwo = new Player ('Player 2')
+const playerOne = new Player ('East', 0, false);
+const playerTwo = new Player ('West', 0, false);
 
 
 

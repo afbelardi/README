@@ -11,7 +11,8 @@
 }
 
 html {
-    font-size: 10px;  
+    font-size: 10px; 
+    height: 100vh; 
    }
 
 body {
@@ -22,7 +23,7 @@ body {
 
 body {
     background-color: #17408B;
-    height: 100vh;
+    max-height: 100%;
     font-family: helvetica;
 }
 
@@ -30,21 +31,25 @@ header {
     margin-top: 3em;
     height: 25vh;
     margin-bottom: 5em;
+    display: flex;
+    justify-content: center;
 }
 
 #wrapper {
     height: 75%;
     margin-left: auto;
     margin-right: auto;
-    width: 960px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 
 #nba-logo {
     height: 90%;
     display: flex;
-    padding-left: 40%;
+    position: relative;
 }
 
 #instructions {
@@ -52,17 +57,17 @@ header {
     height: 125px;
     background-color: #FFFFFF;
     border-radius: 7px;
-    transform: translate(84%);
-    display: flex;
+
+   
 }
 
 #two-player {
-    margin-top: 200px;
+    margin-top: 100px;
     width: 350px;
     height: 125px;
     background-color: #FFFFFF;
     border-radius: 7px;
-    transform: translate(-16%)
+    
 }
 
 #two-player:hover {
@@ -72,9 +77,6 @@ header {
 #instructions h1 {
     color: #C9082A;
     font-size: 30px;
-    padding-top: 45px;
-    padding-left: 65px;
-    
 }
 
 #instructions:hover {
@@ -134,7 +136,14 @@ header {
     font-size: 30px;
 }
 
-.multiple-choice {
+.choices {
     background-color: #FFFFFF;
+    width: 800px;
+    height: 100px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
 
+#choice1 {
+    margin-top: 110px;
 }
