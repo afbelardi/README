@@ -421,15 +421,13 @@ const instructions = () => {
   $closeModal.on('click', closeModal);
 
   const pullQuestion = () => {
-    // let arrQuestions = [];
-    for (i = 0; i < triviaQuestions.length; i++){
-        console.log('Test');
+    const triviaQuestion = triviaQuestions[0].question;
+    $('<h2>').addClass('question').text(`${triviaQuestion}`).insertBefore('#choice1');
     }
-    pullQuestion();
-  }
+    
 
 
-  
+
   const startGame = () => {
     $twoPlayer.remove();
     $openModal.remove();
@@ -437,7 +435,8 @@ const instructions = () => {
     $('<button>').addClass('choices').attr('id', 'choice2').insertBefore('#modal');
     $('<button>').addClass('choices').attr('id', 'choice3').insertBefore('#modal');
     $('<button>').addClass('choices').attr('id', 'choice4').insertBefore('#modal');
-      
+    pullQuestion(); 
+    alert('East is up first!');
   }
 
   $twoPlayer.on('click', startGame);
