@@ -451,6 +451,7 @@ const $openModal = $('#instructions');
 const $closeModal = $('#close');
 const $audio = $('audio');
 const $twoPlayer = $('#two-player');
+const $body = $('body');
 
 //DEFINED VARIABLES
 let randomIndex = triviaQuestions[Math.floor(Math.random() * triviaQuestions.length)];
@@ -459,7 +460,7 @@ const $answerQuestion1 = randomIndex.answers[0];
 const $answerQuestion2 = randomIndex.answers[1];
 const $answerQuestion3 = randomIndex.answers[2];
 const $answerQuestion4 = randomIndex.answers[3];
-// let answerClicked = 
+
 
  // CREATING PLAYER CLASS
  class Player {
@@ -468,9 +469,9 @@ const $answerQuestion4 = randomIndex.answers[3];
         this.points = points;
         this.isActive = isActive;
     }
-  //   gainPoints() {
-  //     if 
-  //   }
+    gainPoints() {
+      this.points += triviaQuestions.points;
+    }
 }
 
 
@@ -478,7 +479,7 @@ const $answerQuestion4 = randomIndex.answers[3];
 const east = new Player ('East', 0, false);
 const west = new Player ('West', 0, false);
 
-console.log(east);
+
 
 
 // FUNCTIONS TO OPEN THE MODAL
@@ -495,14 +496,20 @@ const instructions = () => {
 
 
   // OPENING THE MODAL ACTION
-  
+
+  const randomizeQuestion = () => {
+    let randomQuestion = randomIndex.question;
+    return randomQuestion.value;
+  }
+
 
   const pullQuestion = () => {
     $('<h2>').addClass('question').text(`${randomQuestion}`).insertBefore('#choice1');
-    $('<h3>').addClass('answers').text(`${$answerQuestion1}`).appendTo('#choice1');
-    $('<h3>').addClass('answers').text(`${$answerQuestion2}`).appendTo('#choice2');
-    $('<h3>').addClass('answers').text(`${$answerQuestion3}`).appendTo('#choice3');
-    $('<h3>').addClass('answers').text(`${$answerQuestion4}`).appendTo('#choice4');   
+    $('<h3>').addClass('answers').text(`${$answerQuestion1}`).val($answerQuestion1).appendTo('#choice1');
+    $('<h3>').addClass('answers').text(`${$answerQuestion2}`).val($answerQuestion2).appendTo('#choice2');
+    $('<h3>').addClass('answers').text(`${$answerQuestion3}`).val($answerQuestion3).appendTo('#choice3');
+    $('<h3>').addClass('answers').text(`${$answerQuestion4}`).val($answerQuestion4).appendTo('#choice4'); 
+    randomizeQuestion();  
     }
     
 
@@ -511,30 +518,57 @@ const instructions = () => {
   const startGame = () => {
     $twoPlayer.remove();
     $openModal.remove();
-    $('<button>').addClass('choices').attr('id', 'choice1').insertBefore('#modal');
-    $('<button>').addClass('choices').attr('id', 'choice2').insertBefore('#modal');
-    $('<button>').addClass('choices').attr('id', 'choice3').insertBefore('#modal');
-    $('<button>').addClass('choices').attr('id', 'choice4').insertBefore('#modal');
+    $('<button>').addClass('choices').val($answerQuestion1).attr('id', 'choice1').insertBefore('#modal');
+    $('<button>').addClass('choices').val($answerQuestion2).attr('id', 'choice2').insertBefore('#modal');
+    $('<button>').addClass('choices').val($answerQuestion3).attr('id', 'choice3').insertBefore('#modal');
+    $('<button>').addClass('choices').val($answerQuestion4).attr('id', 'choice4').insertBefore('#modal');
     pullQuestion(); 
 
     alert('East is up first!');
-    $('<h3>').attr('id', 'score').text(`You have scored ${east.points} out of 500`).insertBefore('#choice1');
+    // east.isActive = true;
+    $('<h3>').attr('id', 'score').text(`You have scored ${east.points} out of 500 points`).insertBefore('#choice1');
   }
 
- 
+  const checkAnswer = (e) => {
+      if (e.target.value === randomIndex.rightAnswer){
+          alert('Correct!');
+          $('.choices').empty();
+          $('.question').empty();
+          $('.answers').empty();
+          pullQuestion();
+      }else{
+          alert('Incorrect! No points earned!');
+          $('.choices').empty();
+          $('.question').empty();
+          $('.answers').empty();     
+          pullQuestion();     
 
-//   const checkAnswer = () => {
-//     let answerClicked = 
-//   }
+      }
+  }
 
- 
-
+  $twoPlayer.on('click', startGame);
 
 
+  //CLICK EVENTS TO CHECK FOR CORRECT ANSWER
+  $('#wrapper').on('click', '#choice1', checkAnswer);
+  $('#wrapper').on('click', '#choice2', checkAnswer);
+  $('#wrapper').on('click', '#choice3', checkAnswer);
+  $('#wrapper').on('click', '#choice4', checkAnswer);
+
+
+//OPEN AND CLOSE MODAL
 $openModal.on('click', instructions);
-  $closeModal.on('click', closeModal);
+$closeModal.on('click', closeModal);
 
 
-$twoPlayer.on('click', startGame);
+
 
 })
+
+
+
+//How to switch between players
+//How to have points added and showing on DOM
+//How to get the questions to not repeat
+//How to get questions and answers to cycle through
+
