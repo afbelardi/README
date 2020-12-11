@@ -455,17 +455,20 @@ let randomIndex = 0;
         this.questionCount = questionCount;
     }
     gainPoints() {
-      this.points += triviaQuestions.points.value;
+      this.points += triviaQuestions[randomIndex].points;
+      return this.points;
     }
 
 }
 
 
+
 // CREATING TWO INSTANCES OF THE PLAYER
-const east = new Player ('East', 0, false);
-const west = new Player ('West', 0, false);
+const east = new Player ('East', 0, false, 0);
+const west = new Player ('West', 0, false, 0);
 
-
+console.log(east);
+console.log(east.gainPoints());
 
 
 // FUNCTIONS TO OPEN THE MODAL
@@ -499,7 +502,12 @@ const instructions = () => {
     $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[2]}`).val(triviaQuestions[randomIndex].answers[2]).appendTo('#choice3');
     $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[3]}`).val(triviaQuestions[randomIndex].answers[3]).appendTo('#choice4'); 
     $('#random-index').text(randomIndex);
+
+    let usedQuestions = [];
+    usedQuestions.push(triviaQuestions[randomIndex].question);
+    console.log(usedQuestions);
     return randomIndex;
+    
      
     }
 
@@ -540,6 +548,8 @@ const instructions = () => {
           $('.question').remove();
           $('.answers').remove();
           nextQuestion();
+          east.gainPoints();
+          return east.points;
       }else{
           alert('Incorrect! No points earned!');
           console.log(e.target.value);
@@ -551,6 +561,34 @@ const instructions = () => {
   }
 
   $twoPlayer.on('click', startGame);
+
+  const eastRank = () => {
+      if (east.Points <= 200){
+          alert('You\'re a rookie! Keep practicing')
+      } else if (east.Points > 200 && east.Points <= 400){
+          alert('Congrats! You\'re an All-Star')
+      }else{
+          alert('You\'ve made it into the Hall of Fame! You\'re a legend!')
+      }
+  }
+
+  const westRank = () => {
+    if (west.Points <= 200){
+        alert('You\'re a rookie! Keep practicing')
+    } else if (west.Points > 200 && west.Points <= 400){
+        alert('Congrats! You\'re an All-Star')
+    } else{
+        alert('You\'ve made it into the Hall of Fame! You\'re a legend!')
+    }
+  }
+
+  const checkWinner = () => {
+      if (east.points > west.points){
+          alert('East is the winner!')
+      } else {
+          alert('West is the winner!')
+      }
+  }
 
 
   //CLICK EVENTS TO CHECK FOR CORRECT ANSWER
