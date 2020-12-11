@@ -140,13 +140,6 @@ const triviaQuestions = [
         points: 100
     },
 
-    {
-        id: 18,
-        question: '60% of NBA players become broke after 5 years of retirement',
-        rightAnswer: 'True',
-        answers: ['False', 'True'],
-        points: 100
-    },
 
     {
         id: 19,
@@ -282,15 +275,6 @@ const triviaQuestions = [
         question: 'Which college did Michael Jordan attend?',
         rightAnswer: 'UNC',
         answers: ['UCLA', 'University of Illinois', 'Notre Dame', 'UNC'],
-        points: 100
-    },
-
-
-    {
-        id: 35,
-        question: 'Were Michael Jordan\'s kids in the film "Space Jam" portrayed by his real kids?',
-        rightAnswer: 'No',
-        answers: ['Yes', 'No'],
         points: 100
     },
 
@@ -454,24 +438,26 @@ const $twoPlayer = $('#two-player');
 const $body = $('body');
 
 //DEFINED VARIABLES
-let randomIndex = triviaQuestions[Math.floor(Math.random() * triviaQuestions.length)];
-let randomQuestion = randomIndex.question;
-const $answerQuestion1 = randomIndex.answers[0];
-const $answerQuestion2 = randomIndex.answers[1];
-const $answerQuestion3 = randomIndex.answers[2];
-const $answerQuestion4 = randomIndex.answers[3];
+let randomIndex = 0;
+// const randomAnswers = Math.floor(Math.random() * triviaQuestions[randomIndex].answers);
+// let $answerQuestion0 = triviaQuestions[randomIndex].answers[0];
+// let $answerQuestion1 = triviaQuestions[randomIndex].answers[1];
+// let $answerQuestion2 = triviaQuestions[randomIndex].answers[2];
+// let $answerQuestion3 = triviaQuestions[randomIndex].answers[3];
 
 
  // CREATING PLAYER CLASS
  class Player {
-    constructor (name, points, isActive){
+    constructor (name, points, isActive, questionCount){
         this.name = name;
         this.points = points;
         this.isActive = isActive;
+        this.questionCount = questionCount;
     }
     gainPoints() {
-      this.points += triviaQuestions.points;
+      this.points += triviaQuestions.points.value;
     }
+
 }
 
 
@@ -497,20 +483,26 @@ const instructions = () => {
 
   // OPENING THE MODAL ACTION
 
-  const randomizeQuestion = () => {
-    let randomQuestion = randomIndex.question;
-    return randomQuestion.value;
-  }
-
-
-  const pullQuestion = () => {
-    $('<h2>').addClass('question').text(`${randomQuestion}`).insertBefore('#choice1');
-    $('<h3>').addClass('answers').text(`${$answerQuestion1}`).val($answerQuestion1).appendTo('#choice1');
-    $('<h3>').addClass('answers').text(`${$answerQuestion2}`).val($answerQuestion2).appendTo('#choice2');
-    $('<h3>').addClass('answers').text(`${$answerQuestion3}`).val($answerQuestion3).appendTo('#choice3');
-    $('<h3>').addClass('answers').text(`${$answerQuestion4}`).val($answerQuestion4).appendTo('#choice4'); 
-    randomizeQuestion();  
+//   const randomizeQuestion = () => {
+//     randomIndex = Math.floor(Math.random() * triviaQuestions.length);
+//     let question = triviaQuestions[randomIndex];
+//     return question;
+    
+//   }
+  
+  
+  const nextQuestion = () => {
+    randomIndex = Math.floor(Math.random() * triviaQuestions.length);
+    $('<h2>').addClass('question').text(`${triviaQuestions[randomIndex].question}`).insertBefore('#choice1');
+    $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[0]}`).val(triviaQuestions[randomIndex].answers[0]).appendTo('#choice1');
+    $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[1]}`).val(triviaQuestions[randomIndex].answers[1]).appendTo('#choice2');
+    $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[2]}`).val(triviaQuestions[randomIndex].answers[2]).appendTo('#choice3');
+    $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[3]}`).val(triviaQuestions[randomIndex].answers[3]).appendTo('#choice4'); 
+    $('#random-index').text(randomIndex);
+    return randomIndex;
+     
     }
+
     
 
 
@@ -518,42 +510,54 @@ const instructions = () => {
   const startGame = () => {
     $twoPlayer.remove();
     $openModal.remove();
-    $('<button>').addClass('choices').val($answerQuestion1).attr('id', 'choice1').insertBefore('#modal');
-    $('<button>').addClass('choices').val($answerQuestion2).attr('id', 'choice2').insertBefore('#modal');
-    $('<button>').addClass('choices').val($answerQuestion3).attr('id', 'choice3').insertBefore('#modal');
-    $('<button>').addClass('choices').val($answerQuestion4).attr('id', 'choice4').insertBefore('#modal');
-    pullQuestion(); 
+    $('<button>').addClass('choices').attr('id', 'choice1').insertBefore('#modal');
+    $('<button>').addClass('choices').attr('id', 'choice2').insertBefore('#modal');
+    $('<button>').addClass('choices').attr('id', 'choice3').insertBefore('#modal');
+    $('<button>').addClass('choices').attr('id', 'choice4').insertBefore('#modal');
+    nextQuestion(); 
+    $('#choice1').on('click', checkAnswer);
+    $('#choice2').on('click', checkAnswer);
+    $('#choice3').on('click', checkAnswer);
+    $('#choice4').on('click', checkAnswer);
 
     alert('East is up first!');
-    // east.isActive = true;
-    $('<h3>').attr('id', 'score').text(`You have scored ${east.points} out of 500 points`).insertBefore('#choice1');
+    east.isActive = true;
+    $('<h3>').attr('id', 'score').text(`You have scored ${east.points} out of 500 points`).insertBefore('.question');
   }
 
   const checkAnswer = (e) => {
-      if (e.target.value === randomIndex.rightAnswer){
+        const $element = $(e.currentTarget)
+        const value = $element.children().eq(0).val().trim().toLowerCase().split(' ').join('')
+
+    console.log(value);
+    console.log(triviaQuestions[randomIndex].rightAnswer);
+    console.log(randomIndex);
+
+
+      if (value === triviaQuestions[randomIndex].rightAnswer.trim().toLowerCase().split(' ').join('')){
           alert('Correct!');
-          $('.choices').empty();
-          $('.question').empty();
-          $('.answers').empty();
-          pullQuestion();
+        
+          $('.question').remove();
+          $('.answers').remove();
+          nextQuestion();
       }else{
           alert('Incorrect! No points earned!');
-          $('.choices').empty();
-          $('.question').empty();
-          $('.answers').empty();     
-          pullQuestion();     
-
+          console.log(e.target.value);
+          $('.question').remove();
+          $('.answers').remove();     
+          nextQuestion();     
       }
+      return false;
   }
 
   $twoPlayer.on('click', startGame);
 
 
   //CLICK EVENTS TO CHECK FOR CORRECT ANSWER
-  $('#wrapper').on('click', '#choice1', checkAnswer);
-  $('#wrapper').on('click', '#choice2', checkAnswer);
-  $('#wrapper').on('click', '#choice3', checkAnswer);
-  $('#wrapper').on('click', '#choice4', checkAnswer);
+  $('#choice1').on('click', (e) => {checkAnswer(e)});
+  $('#choice2').on('click', checkAnswer);
+  $('#choice3').on('click', checkAnswer);
+  $('#choice4').on('click', checkAnswer);
 
 
 //OPEN AND CLOSE MODAL
