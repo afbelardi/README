@@ -20,6 +20,7 @@ and challege your friends to see who knows more.
 ##### Credits:
 
     https://www.schemecolor.com/national-basketball-association-logo-colors.php
+    https://icebreakerideas.com/nba-trivia/
 
 ## Approach:
 
@@ -29,7 +30,8 @@ and challege your friends to see who knows more.
 
 #### Wireframe
 
-
+    <img src="images/wireframe1.jpg">
+    <img src="images/wireframe2.jpg">
 
 Color Pallet:
 
