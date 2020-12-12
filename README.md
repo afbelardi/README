@@ -69,7 +69,7 @@ installation instructions, unsolved problems, etc.
 * Stretch goals Two: Add sound effects for right/wrong answers and use modals for right or wrong answers instead of alerts
 * Stretch goals Three: Add an option to just play with one player
 * Stretch goals Four: Have a photo of a rookie, all-star or hall of fame player pop up at the end with the corresponding photo instead of 
-using an alert.
+using an alert. Also be able to restart the game. 
 
 ## Challenges:
 
