@@ -47,7 +47,6 @@ their turn. Both users are able to know their score at the end and find out what
 
 #### Development Plan 
 
-description of your development plan 
 
 * Development Plan One:  Create an array of trivia questions to pull from.
 * Development Plan Two: Design the layout of the front page and questions page through HTML, CSS and jQuery.
