@@ -511,11 +511,6 @@ const checkWinner = () => {
     $('<h1>').text('Game Over').css('font-size', '150px').css('color', 'black').appendTo('#wrapper');
 }
 
-// const endGame = () => {
-//     if (usedQuestions.length == 11){
-//         checkWinner();
-//     }
-// }
 
   
   const nextQuestion = () => {
@@ -617,8 +612,4 @@ $closeModal.on('click', closeModal);
 
 
 
-//How to switch between players
-//How to have points added and showing on DOM
-//How to get the questions to not repeat
-//How to get questions and answers to cycle through
 
