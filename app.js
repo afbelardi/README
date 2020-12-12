@@ -420,7 +420,9 @@ const triviaQuestions = [
         answers: ['3', '5', '2', '4'],
         points: 100
     }
+   
 ]
+
 
 
 
