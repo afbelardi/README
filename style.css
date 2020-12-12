@@ -45,11 +45,15 @@ header {
     justify-content: center;
 }
 
+a {
+    display:flex;
+    justify-content: center;
+}
 
 #nba-logo {
     height: 90%;
-    display: flex;
-    position: relative;
+    display: flex; 
+    position: relative; 
 }
 
 #instructions {

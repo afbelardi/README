@@ -1,5 +1,3 @@
-console.log($);
-
 
 // LIST OF TRIVIA QUESTIONS
 const triviaQuestions = [
@@ -439,20 +437,14 @@ const $body = $('body');
 
 //DEFINED VARIABLES
 let randomIndex = 0;
-// const randomAnswers = Math.floor(Math.random() * triviaQuestions[randomIndex].answers);
-// let $answerQuestion0 = triviaQuestions[randomIndex].answers[0];
-// let $answerQuestion1 = triviaQuestions[randomIndex].answers[1];
-// let $answerQuestion2 = triviaQuestions[randomIndex].answers[2];
-// let $answerQuestion3 = triviaQuestions[randomIndex].answers[3];
+let usedQuestions = [];
 
 
  // CREATING PLAYER CLASS
  class Player {
-    constructor (name, points, isActive, questionCount){
+    constructor (name, points){
         this.name = name;
         this.points = points;
-        this.isActive = isActive;
-        this.questionCount = questionCount;
     }
     gainPoints() {
       this.points += triviaQuestions[randomIndex].points;
@@ -467,8 +459,7 @@ let randomIndex = 0;
 const east = new Player ('East', 0, false, 0);
 const west = new Player ('West', 0, false, 0);
 
-console.log(east);
-console.log(east.gainPoints());
+
 
 
 // FUNCTIONS TO OPEN THE MODAL
@@ -482,117 +473,134 @@ const instructions = () => {
   }
 
 
+  const eastRank = () => {
+    if (east.points <= 200){
+        alert('East, You\'re a rookie! Keep practicing')
+    } else if (east.points > 200 && east.points <= 400){
+        alert('Congrats, East! You\'re an All-Star')
+    }else{
+        alert('East, you\'ve made it into the Hall of Fame! You\'re a legend!')
+    }
+}
 
+const westRank = () => {
+  if (west.points <= 200){
+      alert('West, you\'re a rookie! Keep practicing')
+  } else if (west.points > 200 && west.points <= 400){
+      alert('Congrats, West! You\'re an All-Star')
+  } else{
+      alert('West, you\'ve made it into the Hall of Fame! You\'re a legend!')
+  }
+}
 
-  // OPENING THE MODAL ACTION
+const checkWinner = () => {
+    if (east.points > west.points){
+        alert(`East is the winner with a score of ${east.points}! West lost and had ${west.points}`);
+        eastRank();
+        westRank();
+    } else if (east.points == west.points) {
+        alert(`It was a tie! Each player had ${east.points}! Restart the game and go into Overtime`);
+        eastRank();
+        westRank();
+    } else {
+        alert(`West is the winner with a score of ${west.points}! East lost and had a score of ${east.points}`);
+        eastRank();
+        westRank();
+    }
+    $('#wrapper').empty();
+    $('<h1>').text('Game Over').css('font-size', '150px').css('color', 'black').appendTo('#wrapper');
+}
 
-//   const randomizeQuestion = () => {
-//     randomIndex = Math.floor(Math.random() * triviaQuestions.length);
-//     let question = triviaQuestions[randomIndex];
-//     return question;
-    
-//   }
-  
+// const endGame = () => {
+//     if (usedQuestions.length == 11){
+//         checkWinner();
+//     }
+// }
+
   
   const nextQuestion = () => {
-    randomIndex = Math.floor(Math.random() * triviaQuestions.length);
-    $('<h2>').addClass('question').text(`${triviaQuestions[randomIndex].question}`).insertBefore('#choice1');
-    $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[0]}`).val(triviaQuestions[randomIndex].answers[0]).appendTo('#choice1');
-    $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[1]}`).val(triviaQuestions[randomIndex].answers[1]).appendTo('#choice2');
-    $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[2]}`).val(triviaQuestions[randomIndex].answers[2]).appendTo('#choice3');
-    $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[3]}`).val(triviaQuestions[randomIndex].answers[3]).appendTo('#choice4'); 
-    $('#random-index').text(randomIndex);
-
-    let usedQuestions = [];
-    usedQuestions.push(triviaQuestions[randomIndex].question);
-    console.log(usedQuestions);
-    return randomIndex;
+      if (usedQuestions.length < 10){
+        randomIndex = Math.floor(Math.random() * triviaQuestions.length);
+        $('<h2>').addClass('question').text(`${triviaQuestions[randomIndex].question}`).insertBefore('#choice1');
+        $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[0]}`).val(triviaQuestions[randomIndex].answers[0]).appendTo('#choice1');
+        $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[1]}`).val(triviaQuestions[randomIndex].answers[1]).appendTo('#choice2');
+        $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[2]}`).val(triviaQuestions[randomIndex].answers[2]).appendTo('#choice3');
+        $('<h3>').addClass('answers').text(`${triviaQuestions[randomIndex].answers[3]}`).val(triviaQuestions[randomIndex].answers[3]).appendTo('#choice4'); 
     
-     
+    
+    usedQuestions.push(triviaQuestions[randomIndex].question);
+        if (usedQuestions.length === 6){
+            alert(`East scored ${east.points}! West is up next!`);
+            $('#score').remove();
+            $('<h3>').attr('id', 'score').text('You have scored 0 out of 500 points').insertBefore('.question').css('margin-bottom', '10px').css('padding-bottom', '10px');
+     }
+        return randomIndex;
+     }else {
+        checkWinner();
+        }
+    
     }
 
+
+
     
-
-
-
   const startGame = () => {
     $twoPlayer.remove();
     $openModal.remove();
-    $('<button>').addClass('choices').attr('id', 'choice1').insertBefore('#modal');
-    $('<button>').addClass('choices').attr('id', 'choice2').insertBefore('#modal');
-    $('<button>').addClass('choices').attr('id', 'choice3').insertBefore('#modal');
-    $('<button>').addClass('choices').attr('id', 'choice4').insertBefore('#modal');
-    nextQuestion(); 
-    $('#choice1').on('click', checkAnswer);
-    $('#choice2').on('click', checkAnswer);
-    $('#choice3').on('click', checkAnswer);
-    $('#choice4').on('click', checkAnswer);
+        $('<button>').addClass('choices').attr('id', 'choice1').insertBefore('#modal');
+        $('<button>').addClass('choices').attr('id', 'choice2').insertBefore('#modal');
+        $('<button>').addClass('choices').attr('id', 'choice3').insertBefore('#modal');
+        $('<button>').addClass('choices').attr('id', 'choice4').insertBefore('#modal');
+        nextQuestion(); 
+            $('#choice1').on('click', checkAnswer);
+            $('#choice2').on('click', checkAnswer);
+            $('#choice3').on('click', checkAnswer);
+            $('#choice4').on('click', checkAnswer);
 
     alert('East is up first!');
-    east.isActive = true;
-    $('<h3>').attr('id', 'score').text(`You have scored ${east.points} out of 500 points`).insertBefore('.question');
+    $('<h3>').attr('id', 'score').text('You have scored 0 out of 500 points').insertBefore('.question').css('margin-bottom', '10px').css('padding-bottom', '10px');
+  }
+
+
+  const addPoints = () => {
+      if (usedQuestions.length < 6){
+          east.gainPoints();
+          $('#score').text(`You have scored ${east.points} out of 500 points`)
+      }else{
+          west.gainPoints();
+          $('#score').text(`You have scored ${west.points} out of 500 points`)
+      }
   }
 
   const checkAnswer = (e) => {
         const $element = $(e.currentTarget)
         const value = $element.children().eq(0).val().trim().toLowerCase().split(' ').join('')
-
-    console.log(value);
-    console.log(triviaQuestions[randomIndex].rightAnswer);
-    console.log(randomIndex);
-
-
       if (value === triviaQuestions[randomIndex].rightAnswer.trim().toLowerCase().split(' ').join('')){
-          alert('Correct!');
-        
           $('.question').remove();
           $('.answers').remove();
+          addPoints();
+          alert('Swish!');
           nextQuestion();
-          east.gainPoints();
-          return east.points;
+          
+          
+          
+          
       }else{
-          alert('Incorrect! No points earned!');
-          console.log(e.target.value);
           $('.question').remove();
           $('.answers').remove();     
+          alert('Airball! No points earned!');
           nextQuestion();     
       }
-      return false;
   }
 
   $twoPlayer.on('click', startGame);
 
-  const eastRank = () => {
-      if (east.Points <= 200){
-          alert('You\'re a rookie! Keep practicing')
-      } else if (east.Points > 200 && east.Points <= 400){
-          alert('Congrats! You\'re an All-Star')
-      }else{
-          alert('You\'ve made it into the Hall of Fame! You\'re a legend!')
-      }
-  }
+ 
 
-  const westRank = () => {
-    if (west.Points <= 200){
-        alert('You\'re a rookie! Keep practicing')
-    } else if (west.Points > 200 && west.Points <= 400){
-        alert('Congrats! You\'re an All-Star')
-    } else{
-        alert('You\'ve made it into the Hall of Fame! You\'re a legend!')
-    }
-  }
-
-  const checkWinner = () => {
-      if (east.points > west.points){
-          alert('East is the winner!')
-      } else {
-          alert('West is the winner!')
-      }
-  }
 
 
   //CLICK EVENTS TO CHECK FOR CORRECT ANSWER
-  $('#choice1').on('click', (e) => {checkAnswer(e)});
+  $('#choice1').on('click', checkAnswer);
   $('#choice2').on('click', checkAnswer);
   $('#choice3').on('click', checkAnswer);
   $('#choice4').on('click', checkAnswer);
